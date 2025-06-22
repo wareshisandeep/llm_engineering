@@ -63,7 +63,10 @@ Open Source Frontier Models
 	With Ollama to run locally
 
 -------------------------------------------------------------------------------------------------------------------------------------------
-Ollama for local inference
+Ollama for local LLM inference
+1. Open Anaconda powershell
+2. (base) PS D:\development\UdemyBusinessCiti\LLM_Engineering\llm_engineering> conda activate llms
+   (llms) PS D:\development\UdemyBusinessCiti\LLM_Engineering\llm_engineering> jupyter lab
 
 
 	
