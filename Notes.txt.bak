@@ -1,0 +1,69 @@
+How to run ollama locally
+	from the command prompt > ollama run llama3.2
+	
+How to setup anaconda
+	1. Open Anaconda powershell
+	2. (base) PS D:\development\UdemyBusinessCiti\LLM_Engineering\llm_engineering> conda activate llms
+	   (llms) PS D:\development\UdemyBusinessCiti\LLM_Engineering\llm_engineering> jupyter lab
+	3. Opens jupyter lab in browser
+	
+3 dimensions of LLM engineering
+1. Models:
+		open source
+		closed source
+		multi-modal
+		architecture
+		selecting
+2. Tools	
+		HuggingFace
+		LangChain
+		Gradio
+		Weights and Biases
+		Modal
+
+3. Techniques
+		APIs
+		Multi-Shot-Prompting
+		RAG
+		Fine Tuning
+		Agentization
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+Closed Source Frontier Models
+1. GPT from Open AI
+2. Claude from Anthropic
+3. Gemini from Google
+4. Command R from Cohere
+5. Perplexity
+
+Open Source Frontier Models
+1. Llama from Meta
+2. Mixtral from Mistral
+3. Phi from Microsoft
+4. Qwen from Alibaba Cloud
+5. Gemma from Google
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+3 ways to use models
+
+1. chat interfaces like chatgpt (Monthly subscription)
+2. Cloud APIs 
+	LLM APIs 
+	Frameworks like LangChain
+	Manged AI Cloud services
+		Amazon Bedrock
+		Google Vertex
+		Azure ML
+
+3. Direct Inference
+	HuggingFace
+	Transformers library
+	With Ollama to run locally
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+Ollama for local inference
+
+
+	
