@@ -1,0 +1,231 @@
+reference:
+https://edwarddonner.com/2024/11/13/llm-engineering-resources/
+https://github.com/ed-donner/llm_engineering/blob/main/README.md
+
+----------------------------------------------------------------------------------------------------------------------------------------
+
+
+How to run ollama locally
+	from the command prompt > ollama run llama3.2
+	check on browser: http://localhost:11434/ --> Should show Ollama is running
+
+----------------------------------------------------------------------------------------------------------------------------------------
+	
+How to setup anaconda
+	1. Open Anaconda powershell
+	2. (base) PS D:\development\UdemyBusinessCiti\LLM_Engineering\llm_engineering> conda activate llms
+	   (llms) PS D:\development\UdemyBusinessCiti\LLM_Engineering\llm_engineering> jupyter lab
+	3. Opens jupyter lab in browser
+
+----------------------------------------------------------------------------------------------------------------------------------------
+
+	
+3 dimensions of LLM engineering
+1. Models:
+		open source
+		closed source
+		multi-modal
+		architecture
+		selecting
+2. Tools	
+		HuggingFace
+		LangChain
+		Gradio
+		Weights and Biases
+		Modal
+
+3. Techniques
+		APIs
+		Multi-Shot-Prompting
+		RAG
+		Fine Tuning
+		Agentization
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+Closed Source Frontier Models
+1. GPT from Open AI
+2. Claude from Anthropic
+3. Gemini from Google
+4. Command R from Cohere
+5. Perplexity
+
+Open Source Frontier Models
+1. Llama from Meta
+2. Mixtral from Mistral
+3. Phi from Microsoft
+4. Qwen from Alibaba Cloud
+5. Gemma from Google
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+3 ways to use models
+
+1. chat interfaces like chatgpt (Monthly subscription)
+2. Cloud APIs 
+	LLM APIs 
+	Frameworks like LangChain
+	Manged AI Cloud services
+		Amazon Bedrock
+		Google Vertex
+		Azure ML
+
+3. Direct Inference
+	HuggingFace
+	Transformers library
+	With Ollama to run locally
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+Ollama for local LLM inference
+1. Open Anaconda powershell
+2. (base) PS D:\development\UdemyBusinessCiti\LLM_Engineering\llm_engineering> conda activate llms
+   (llms) PS D:\development\UdemyBusinessCiti\LLM_Engineering\llm_engineering> jupyter lab
+   
+
+   
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+Day 5
+One shot prompting -> prompt with example what you expect in the output
+In pycharm > Create a conda environment using envrionment.yml file to load the required dependencies
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+There is a difference in the way to call apis of different LLMs
+GPT-4.1-mini
+completion = openai.chat.completions.create(
+    model='gpt-4.1-mini',
+    messages=prompts,
+    temperature=0.7
+)
+print(completion.choices[0].message.content)
+
+--------------------------------------------------------------------------------------------------------------------------
+
+Claude
+message = claude.messages.create(
+    model="claude-3-7-sonnet-latest",
+    max_tokens=200,
+    temperature=0.7,
+    system=system_message,
+    messages=[
+        {"role": "user", "content": user_prompt},
+    ],
+)
+
+print(message.content[0].text)
+
+------------------------------------------------------------------------------------------------------------------------------
+
+stream with claude
+result = claude.messages.stream(
+    model="claude-3-7-sonnet-latest",
+    max_tokens=200,
+    temperature=0.7,
+    system=system_message,
+    messages=[
+        {"role": "user", "content": user_prompt},
+    ],
+)
+
+with result as stream:
+    for text in stream.text_stream:
+            print(text, end="", flush=True)
+
+------------------------------------------------------------------------------------------------------------------------------
+Google
+gemini = google.generativeai.GenerativeModel(
+    model_name='gemini-2.0-flash',
+    system_instruction=system_message
+)
+response = gemini.generate_content(user_prompt)
+print(response.text)
+
+----------------------------------------------------------
+gemini via openapi
+gemini_via_openai_client = OpenAI(
+    api_key=google_api_key, 
+    base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
+)
+
+response = gemini_via_openai_client.chat.completions.create(
+    model="gemini-2.5-flash-preview-04-17",
+    messages=prompts
+)
+
+------------------------------------------------------------------------------------------------------------------------------
+
+UI for non front end people - Gradio from huggingface
+
+import gradio as gr # oh yeah!
+
+#define a function
+def shout(text):
+    print(f"Shout has been called with input {text}")
+    return text.upper()
+	
+# The simplicty of gradio. This might appear in "light mode" - I'll show you how to make this in dark mode later.
+gr.Interface(fn=shout, inputs="textbox", outputs="textbox").launch()	
+
+#with sharable link , creates a link which could be shared with anyone and the ui can be accessed over internet
+gr.Interface(fn=shout, inputs="textbox", outputs="textbox", flagging_mode="never").launch(share=True)
+
+
+# Adding inbrowser=True opens up a new browser window automatically
+gr.Interface(fn=shout, inputs="textbox", outputs="textbox", flagging_mode="never").launch(inbrowser=True)
+
+
+#For creating chatbots using gradio
+Gradio needs the information in following format
+[
+    {"role": "system", "content": "system message here"},
+    {"role": "user", "content": "first user prompt here"},
+    {"role": "assistant", "content": "the assistant's response"},
+    {"role": "user", "content": "the new user prompt"},
+]
+
+#Create a function that takes in message and history
+
+def chat(message, history):
+    messages = [{"role": "system", "content": system_message}] + history + [{"role": "user", "content": message}]
+
+    print("History is:")
+    print(history)
+    print("And messages is:")
+    print(messages)
+
+    stream = openai.chat.completions.create(model=MODEL, messages=messages, stream=True)
+
+    response = ""
+    for chunk in stream:
+        response += chunk.choices[0].delta.content or ''
+        yield response
+
+##one line code for creating chatbot if we have a message like above
+
+gr.ChatInterface(fn=chat, type="messages").launch()		
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+Tools: Allows frontier models to connect to external functions
+- Richer responses by extending knowledge
+- Ability to carry out actions within the application
+- enhanced capabiliites like calculations
+
+How it works?
+specify available tools in request to LLM
+
+Common use cases:
+- Fetch extra data or add knowledge or context
+- Take action like booking a meeting
+- perform calculations 
+- Modify the UI
+
+
+
+
+
+
+
+
+	

@@ -1,0 +1,73 @@
+---------------------------------------------------- Day 1 -----------------------------------------------------------------
+
+
+HuggingFace (ubiquitous platform for LLM engineers) - HF (https://huggingface.co/)
+Features:
+
+1. over 8 lacs open source models
+2. 200000 data sets 
+3. Spaces -> contains Apps, many built using gradio, including leaderboards
+
+
+Hugging Face libraries
+1. Hub -> login to huggingface, download and upload, data sets and models from it
+2. datasets -> gives access to data repositories in HF
+3. transformers -> central library, wrapper code around llms that follow the transformer architecture (under the cover has pytorch or tensorflow code that runs the neural network)
+
+Advance libraries
+
+4. peft -> Parameter efficient fine tuning. utility that allows to train LLMS without needing to work with all of the billions of parameters in the LLMS
+5. trl ->  Transformer Reinforcement Learning. Includes Reward Modelling (RM), Proximal Policy Optimization (PPO). contains Sperwised Fine Tuning (SFT) 
+6. accelarate -> allows transformers to run across any distributed configurations. ALlows both training and inference to run at scale in efficient, adaptable way, potentially across multiple GPUs
+
+------------------------------------------------------------------------------------------------------------------------
+(https://huggingface.co/)
+
+1. can search Models, datasets and spaces on the HF ui. 
+2. click on the profile --> select Access Tokens to generate access tokens
+------------------------------------------------------------------------------------------------------------------------
+Google colab
+
+google colab is used to run jupyter notebook on google cloud
+
+1. URL to google colab: https://colab.research.google.com/
+2. File-> new notebook in drive 
+3. connect -> change runtime type
+	Runtime type -> (Python, R, Julia)
+	Hardware accelerator -> CPU, T4GPU (low end GPU box available in free tier, with some rate limit)
+	select required configurations and click on connect
+4. once box is allocated, you can click on view->resources to see the configurations of the box, RAM (12GB )and disk(107GB)
+5. left pane shows file directory which is ephemeral and will be discarded once you disconnect from the box
+6. You can add your secrets like openAI key, hugging face API keys etc under keys section. You can add new one using Add new secret
+Also need to toggle the button to grant access of teh key to Notebook 
+
+	
+Hugging Face integration with google colab
+
+
+---------------------------------------------------- Day 2 -----------------------------------------------------------------
+HuggingFace transformers using pipelines for AI tasks in Python
+using open source Models through HuggingFace and google colab
+2 types of API levels
+
+1. Pipelines -> Higher level APIs to carry out standard tasks incredibly quickly
+	Generating text and everyday taks
+	
+2. Tokenizers and Models -> Lower level APIs to provide most power and control
+	how you are tokenizing your text, what parameters you using, Training or fine tuning a model
+
+---------------------------
+
+Pipelines: incredibly versatile and simple in 2 lines of code
+1. sentiment analysis (from the sentence, happy / sad)
+2. Classifier (classifying documents into buckets)
+3. Named Entity Recognition ( identify if the words are location, people or things and so on)
+4. Question Answering-> YOu have some context (ASk question and get answers)
+5. Summarizing
+6. Tranlation
+7. Text generation
+8. Generate image
+9. Generate Audio
+
+Check google colab for examples
+-------------------------------------------------------------------------------------------------------------------
