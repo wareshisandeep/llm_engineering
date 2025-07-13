@@ -69,5 +69,21 @@ Pipelines: incredibly versatile and simple in 2 lines of code
 8. Generate image
 9. Generate Audio
 
-Check google colab for examples
--------------------------------------------------------------------------------------------------------------------
+Check google colab for examples for each of the above
+
+---------------------------------------------------- Day 3 -----------------------------------------------------------------
+
+Tokenizer in HuggingFace
+1. It is an object that maps between text (Strings)and tokens (list of numbers) for a particular model
+2. encode -> string to token
+3. Decode -> token to string
+4. contains vocab that can include special tokens to signal information to llm, like start of prompt
+5. Can include chat template that knows how to form a chat message for this model
+ examples:
+ Llama3.1 from Meta
+ Phi3 from Microsoft
+ Qwen2: from Alibaba cloud
+ Starcoder2: coding model
+ 
+ 
+
